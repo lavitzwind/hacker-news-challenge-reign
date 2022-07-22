@@ -57,6 +57,7 @@ const OptionList = styled.ul`
   width: 240px;
   height: 139px;
   background-color: #fff;
+  z-index: 1;
 `;
 
 const Options = styled.li`

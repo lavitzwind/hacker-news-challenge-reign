@@ -29,6 +29,7 @@ const All = styled.li`
   color: var(--tabs-color);
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 `;
 
 const Faves = styled.li`
@@ -45,6 +46,7 @@ const Faves = styled.li`
   color: var(--default-text-color);
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 `;
 
 const Tabs = () => {

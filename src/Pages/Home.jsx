@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Dropdown from "../Components/Dropdown";
 import Navbar from "../Components/Navbar";
+import NewsList from "../Components/NewsList";
 import Tabs from "../Components/Tabs";
 
 const Container = styled.div`
@@ -17,6 +18,7 @@ const Home = () => {
       <Navbar />
       <Tabs />
       <Dropdown />
+      <NewsList />
     </Container>
   );
 };
