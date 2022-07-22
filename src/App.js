@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+`;
 
 function App() {
   return (
     <Container>
-      <Navbar />
+      <Home />
     </Container>
   );
 }
