@@ -1,8 +1,13 @@
+import styled from "styled-components";
+import Navbar from "./Components/Navbar";
+
+const Container = styled.div``;
+
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <Container>
+      <Navbar />
+    </Container>
   );
 }
 
