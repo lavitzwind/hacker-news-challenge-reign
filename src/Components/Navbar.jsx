@@ -13,9 +13,9 @@ const Container = styled.div`
 const NavContainer = styled.div`
   display: flex;
   width: 100%;
+  max-width: 1200px;
   align-items: center;
   justify-content: flex-start;
-  padding: 0px 10rem;
 `;
 
 const Logo = styled.div`
