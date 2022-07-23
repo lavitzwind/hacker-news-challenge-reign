@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import dayjs from "dayjs";
+import CircularProgress from "@mui/material/CircularProgress";
 import relativeTime from "dayjs/plugin/relativeTime";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -78,33 +78,51 @@ const LikeCard = styled.div`
   background-color: #eee;
 `;
 
-const NewsList = ({ dataNews }) => {
+const NewsList = ({ dataNews, loader }) => {
   return (
     <Container>
-      <NewsWrapper>
-        {dataNews?.hits &&
-          dataNews.hits.map((item, index) => (
-            <NewsCard key={index}>
-              <TimeStamp>
-                <AccessTimeIcon
-                  style={{
-                    color: "#655",
-                  }}
-                />
-                {dayjs(item.created_at).fromNow()} by {item.author}
-              </TimeStamp>
-              <Title>{item.story_title}</Title>
-              <LikeCard>
-                <FavoriteBorderIcon
-                  style={{
-                    color: "red",
-                    fontSize: "1.7rem",
-                  }}
-                />
-              </LikeCard>
-            </NewsCard>
-          ))}
-      </NewsWrapper>
+      {loader ? (
+        <CircularProgress
+          style={{
+            color: "#000",
+            marginTop: "4rem",
+          }}
+        />
+      ) : (
+        <NewsWrapper>
+          {dataNews?.hits ? (
+            dataNews?.hits.map((item, index) => (
+              <NewsCard key={index}>
+                <TimeStamp>
+                  <AccessTimeIcon
+                    style={{
+                      color: "#655",
+                    }}
+                  />
+                  {dayjs(item.created_at).fromNow()} by {item.author}
+                </TimeStamp>
+                <Title>{item.story_title}</Title>
+                <LikeCard>
+                  <FavoriteBorderIcon
+                    style={{
+                      color: "red",
+                      fontSize: "1.7rem",
+                    }}
+                  />
+                </LikeCard>
+              </NewsCard>
+            ))
+          ) : (
+            <span
+              style={{
+                marginTop: "4rem",
+              }}
+            >
+              You can start searching for news by selecting your topic.
+            </span>
+          )}
+        </NewsWrapper>
+      )}
     </Container>
   );
 };

@@ -17,6 +17,7 @@ const Container = styled.div`
 const Home = () => {
   const [page, setPage] = useState(0);
   const [dataNews, setDataNews] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const angularUrl =
     "https://hn.algolia.com/api/v1/search_by_date?query=angular&page=0";
@@ -27,8 +28,10 @@ const Home = () => {
 
   const angularSearch = async () => {
     try {
+      setLoader(true);
       const res = await axios.get(`${angularUrl}`);
       setDataNews(res.data);
+      setLoader(false);
     } catch (err) {
       console.log(err);
     }
@@ -36,8 +39,10 @@ const Home = () => {
 
   const reactSearch = async () => {
     try {
+      setLoader(true);
       const res = await axios.get(`${reactUrl}`);
       setDataNews(res.data);
+      setLoader(false);
     } catch (err) {
       console.log(err);
     }
@@ -45,8 +50,10 @@ const Home = () => {
 
   const vueSearch = async () => {
     try {
+      setLoader(true);
       const res = await axios.get(`${vueUrl}`);
       setDataNews(res.data);
+      setLoader(false);
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +68,7 @@ const Home = () => {
         reactSearch={reactSearch}
         vueSearch={vueSearch}
       />
-      <NewsList dataNews={dataNews} />
+      <NewsList dataNews={dataNews} loader={loader} />
     </Container>
   );
 };
