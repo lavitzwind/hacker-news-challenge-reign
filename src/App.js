@@ -3,18 +3,14 @@ import Home from "./Pages/Home";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 100%;
 `;
-
-const handleScroll = (event) => {
-  console.log("scrollTop: ", event.currentTarget.scrollTop);
-  console.log("offsetHeight: ", event.currentTarget.offsetHeight);
-};
 
 function App() {
   return (
-    <Container onScroll={handleScroll}>
+    <Container>
       <Home />
     </Container>
   );

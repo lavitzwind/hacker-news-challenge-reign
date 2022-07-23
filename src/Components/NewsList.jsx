@@ -12,7 +12,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
+  height: 100%;
+  margin-top: 4rem;
 `;
 
 const NewsWrapper = styled.div`
@@ -78,9 +79,14 @@ const LikeCard = styled.div`
   background-color: #eee;
 `;
 
-const NewsList = ({ dataNews, loader }) => {
+const NewsList = ({ dataNews, loader, tab }) => {
   return (
-    <Container>
+    <Container
+      style={{
+        marginTop: dataNews > 0 ? "4rem" : "-4rem",
+        display: tab === "all" ? "flex" : "none",
+      }}
+    >
       {loader ? (
         <CircularProgress
           style={{
@@ -90,32 +96,44 @@ const NewsList = ({ dataNews, loader }) => {
         />
       ) : (
         <NewsWrapper>
-          {dataNews?.hits ? (
-            dataNews?.hits.map((item, index) => (
-              <NewsCard key={index}>
-                <TimeStamp>
-                  <AccessTimeIcon
-                    style={{
-                      color: "#655",
-                    }}
-                  />
-                  {dayjs(item.created_at).fromNow()} by {item.author}
-                </TimeStamp>
-                <Title>{item.story_title}</Title>
-                <LikeCard>
-                  <FavoriteBorderIcon
-                    style={{
-                      color: "red",
-                      fontSize: "1.7rem",
-                    }}
-                  />
-                </LikeCard>
-              </NewsCard>
-            ))
+          {dataNews.length > 0 ? (
+            dataNews
+              .filter(
+                (item) =>
+                  item.story_title !== null &&
+                  item.story_author !== null &&
+                  item.story_url !== null &&
+                  item.created_at !== null
+              )
+              .map((elem, index) => (
+                <NewsCard key={index}>
+                  <TimeStamp>
+                    <AccessTimeIcon
+                      style={{
+                        color: "#655",
+                      }}
+                    />
+                    {dayjs(elem.created_at).fromNow()} by {elem.author}
+                  </TimeStamp>
+                  <Title>{elem.story_title}</Title>
+                  <LikeCard>
+                    <FavoriteBorderIcon
+                      style={{
+                        color: "red",
+                        fontSize: "1.7rem",
+                      }}
+                    />
+                  </LikeCard>
+                </NewsCard>
+              ))
           ) : (
             <span
               style={{
-                marginTop: "4rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                height: "30vh",
+                marginTop: "3rem",
               }}
             >
               You can start searching for news by selecting your topic.

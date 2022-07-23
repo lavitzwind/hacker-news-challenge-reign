@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -49,8 +49,12 @@ const Faves = styled.li`
   transition: all 0.1s ease-in-out;
 `;
 
-const Tabs = () => {
+const Tabs = ({ setTab }) => {
   const [tabColor, setTabColor] = useState(true);
+
+  useEffect(() => {
+    tabColor ? setTab("all") : setTab("faves");
+  }, [tabColor, setTab]);
 
   return (
     <Container>

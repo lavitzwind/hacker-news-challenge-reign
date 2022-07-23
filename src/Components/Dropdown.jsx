@@ -6,8 +6,9 @@ import useOnClickOutside from "../Hooks/useOnClickOutside";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+  height: 12vh;
   margin-top: 5rem;
 `;
 
@@ -89,10 +90,17 @@ const Topics = styled.label`
   color: #343434;
   width: 100%;
   height: 100%;
+
   cursor: pointer;
 `;
 
-const Dropdown = ({ angularSearch, reactSearch, vueSearch }) => {
+const Dropdown = ({
+  angularSearch,
+  reactSearch,
+  vueSearch,
+  setDataNews,
+  tab,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Select your news");
   const dropdownRef = useRef();
@@ -102,10 +110,10 @@ const Dropdown = ({ angularSearch, reactSearch, vueSearch }) => {
   const handleTopic = (topic) => {
     setSelected(topic);
     topic === "Angular"
-      ? angularSearch()
+      ? angularSearch() && setDataNews([])
       : topic === "React"
-      ? reactSearch()
-      : vueSearch();
+      ? reactSearch() && setDataNews([])
+      : vueSearch() && setDataNews([]);
   };
 
   const options = [
@@ -133,7 +141,11 @@ const Dropdown = ({ angularSearch, reactSearch, vueSearch }) => {
   ];
 
   return (
-    <Container>
+    <Container
+      style={{
+        display: tab === "all" ? "flex" : "none",
+      }}
+    >
       <DropdownContainer ref={dropdownRef}>
         <SelectWrapper onClick={() => setIsOpen(!isOpen)}>
           <DefaultText>
