@@ -13,7 +13,9 @@ const Home = () => {
   const [dataSource, setDataSource] = useState([]);
   const [loader, setLoader] = useState(false);
   const [tab, setTab] = useState("all");
-  const [faves, setFaves] = useState([]);
+  const [faves, setFaves] = useState(
+    JSON.parse(localStorage.getItem("faves")) || []
+  );
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${page}`;
   const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${page}`;
@@ -91,7 +93,7 @@ const Home = () => {
   }, [dataSource.query]);
 
   useEffect(() => {
-    console.log(faves);
+    localStorage.setItem("faves", JSON.stringify(faves));
   }, [faves]);
 
   return (
@@ -110,7 +112,6 @@ const Home = () => {
         loader={loader}
         tab={tab}
         setFaves={setFaves}
-        faves={faves}
       />
       <Faves loader={loader} tab={tab} faves={faves} />
     </div>

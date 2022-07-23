@@ -1,4 +1,5 @@
 import "./newsList.css";
+import { useEffect } from "react";
 import dayjs from "dayjs";
 import CircularProgress from "@mui/material/CircularProgress";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -7,7 +8,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 dayjs.extend(relativeTime);
 
-const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
+const NewsList = ({ dataNews, loader, tab, setFaves }) => {
   return (
     <div
       className="newsListContainer"
