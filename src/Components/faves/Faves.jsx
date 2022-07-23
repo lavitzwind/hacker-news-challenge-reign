@@ -7,7 +7,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 dayjs.extend(relativeTime);
 
-const Faves = ({ dataNews, loader, tab, faves }) => {
+const Faves = ({ loader, tab, faves }) => {
   return (
     <div
       className="favesContainer"
@@ -90,7 +90,7 @@ const Faves = ({ dataNews, loader, tab, faves }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 height: "30vh",
-                marginTop: "3rem",
+                margin: "3rem 0 0 3rem",
               }}
             >
               You have not favorite news yet

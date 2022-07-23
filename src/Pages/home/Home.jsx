@@ -112,7 +112,7 @@ const Home = () => {
         setFaves={setFaves}
         faves={faves}
       />
-      <Faves dataNews={dataNews} loader={loader} tab={tab} faves={faves} />
+      <Faves loader={loader} tab={tab} faves={faves} />
     </div>
   );
 };
