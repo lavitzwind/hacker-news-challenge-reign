@@ -13,7 +13,7 @@ const Container = styled.div`
 const NavContainer = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1150px;
   align-items: center;
   justify-content: flex-start;
 `;

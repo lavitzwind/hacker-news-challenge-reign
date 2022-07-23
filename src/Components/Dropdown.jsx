@@ -17,7 +17,7 @@ const DropdownContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1150px;
 `;
 
 const SelectWrapper = styled.ul`
@@ -92,12 +92,21 @@ const Topics = styled.label`
   cursor: pointer;
 `;
 
-const Dropdown = () => {
+const Dropdown = ({ angularSearch, reactSearch, vueSearch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Select your news");
   const dropdownRef = useRef();
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
+
+  const handleTopic = (topic) => {
+    setSelected(topic);
+    topic === "Angular"
+      ? angularSearch()
+      : topic === "React"
+      ? reactSearch()
+      : vueSearch();
+  };
 
   const options = [
     {
@@ -136,7 +145,7 @@ const Dropdown = () => {
             {options.map((item) => (
               <Options key={item.id} onClick={() => setIsOpen(false)}>
                 <Icons src={item.icon} alt={item.alt} />
-                <Topics onClick={() => setSelected(item.name)}>
+                <Topics onClick={() => handleTopic(item.name)}>
                   {item.name}
                 </Topics>
               </Options>

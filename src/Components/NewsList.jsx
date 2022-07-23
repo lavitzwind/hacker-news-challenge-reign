@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+dayjs.extend(relativeTime);
 
 const Container = styled.div`
   display: flex;
@@ -74,100 +78,32 @@ const LikeCard = styled.div`
   background-color: #eee;
 `;
 
-const NewsList = () => {
-  const [like, setLike] = useState();
-
+const NewsList = ({ dataNews }) => {
   return (
     <Container>
       <NewsWrapper>
-        <NewsCard>
-          <TimeStamp>
-            <AccessTimeIcon
-              style={{
-                color: "#655",
-              }}
-            />
-            2 hours ago by author
-          </TimeStamp>
-          <Title>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
-            lorem lorem bumpo
-          </Title>
-          <LikeCard>
-            <FavoriteBorderIcon
-              style={{
-                color: "red",
-                fontSize: "1.7rem",
-              }}
-            />
-          </LikeCard>
-        </NewsCard>
-        <NewsCard>
-          <TimeStamp>
-            <AccessTimeIcon
-              style={{
-                color: "#655",
-              }}
-            />
-            2 hours ago by author
-          </TimeStamp>
-          <Title>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
-            lorem lorem bumpo
-          </Title>
-          <LikeCard>
-            <FavoriteBorderIcon
-              style={{
-                color: "red",
-                fontSize: "1.7rem",
-              }}
-            />
-          </LikeCard>
-        </NewsCard>
-        <NewsCard>
-          <TimeStamp>
-            <AccessTimeIcon
-              style={{
-                color: "#655",
-              }}
-            />
-            2 hours ago by author
-          </TimeStamp>
-          <Title>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
-            lorem lorem bumpo
-          </Title>
-          <LikeCard>
-            <FavoriteBorderIcon
-              style={{
-                color: "red",
-                fontSize: "1.7rem",
-              }}
-            />
-          </LikeCard>
-        </NewsCard>
-        <NewsCard>
-          <TimeStamp>
-            <AccessTimeIcon
-              style={{
-                color: "#655",
-              }}
-            />
-            2 hours ago by author
-          </TimeStamp>
-          <Title>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
-            lorem lorem bumpo
-          </Title>
-          <LikeCard>
-            <FavoriteBorderIcon
-              style={{
-                color: "red",
-                fontSize: "1.7rem",
-              }}
-            />
-          </LikeCard>
-        </NewsCard>
+        {dataNews?.hits &&
+          dataNews.hits.map((item, index) => (
+            <NewsCard key={index}>
+              <TimeStamp>
+                <AccessTimeIcon
+                  style={{
+                    color: "#655",
+                  }}
+                />
+                {dayjs(item.created_at).fromNow()} by {item.author}
+              </TimeStamp>
+              <Title>{item.story_title}</Title>
+              <LikeCard>
+                <FavoriteBorderIcon
+                  style={{
+                    color: "red",
+                    fontSize: "1.7rem",
+                  }}
+                />
+              </LikeCard>
+            </NewsCard>
+          ))}
       </NewsWrapper>
     </Container>
   );
