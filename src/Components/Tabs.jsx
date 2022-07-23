@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin: 5rem 3rem 0 0;
 `;
 
 const TabsWrapper = styled.ul`

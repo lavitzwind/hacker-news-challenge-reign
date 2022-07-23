@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropdown from "../Components/Dropdown";
 import Navbar from "../Components/Navbar";
 import NewsList from "../Components/NewsList";
 import Tabs from "../Components/Tabs";
+import Faves from "../Components/Faves";
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +21,7 @@ const Home = () => {
   const [dataSource, setDataSource] = useState([]);
   const [loader, setLoader] = useState(false);
   const [tab, setTab] = useState("all");
+  const [faves, setFaves] = useState([]);
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${page}`;
   const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${page}`;
@@ -28,7 +29,7 @@ const Home = () => {
 
   const angularSearch = async () => {
     try {
-      dataNews.length === 0 ? setLoader(true) : setLoader(false);
+      setLoader(true);
       const res = await axios.get(`${angularUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
@@ -40,7 +41,7 @@ const Home = () => {
 
   const reactSearch = async () => {
     try {
-      dataNews.length === 0 ? setLoader(true) : setLoader(false);
+      setLoader(true);
       const res = await axios.get(`${reactUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
@@ -52,7 +53,7 @@ const Home = () => {
 
   const vueSearch = async () => {
     try {
-      dataNews.length === 0 ? setLoader(true) : setLoader(false);
+      setLoader(true);
       const res = await axios.get(`${vueUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
@@ -62,38 +63,52 @@ const Home = () => {
     }
   };
 
-  const scrollData = () => {
-    setPage((prev) => prev + 1);
-    if (dataSource.query === "angular") {
-      angularSearch();
-    } else if (dataSource.query === "reactjs") {
-      reactSearch();
-    } else if (dataSource.query === "vue") {
-      vueSearch();
+  const scrollData = (e) => {
+    if (
+      window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+      e.target.documentElement.scrollHeight
+    ) {
+      setPage((prev) => prev + 1);
+      if (dataSource.query === "angular") {
+        angularSearch();
+      } else if (dataSource.query === "reactjs") {
+        reactSearch();
+      } else if (dataSource.query === "vue") {
+        vueSearch();
+      }
     }
   };
 
-  const handleTabs = () => {};
+  useEffect(() => {
+    window.addEventListener("scroll", scrollData);
+    return () => {
+      window.removeEventListener("scroll", scrollData);
+    };
+  });
+
+  useEffect(() => {
+    console.log(faves);
+  }, [faves]);
 
   return (
-    <InfiniteScroll
-      dataLength={dataNews.length}
-      next={() => scrollData()}
-      hasMore={true}
-    >
-      <Container>
-        <Navbar />
-        <Tabs setTab={setTab} />
-        <Dropdown
-          angularSearch={angularSearch}
-          reactSearch={reactSearch}
-          vueSearch={vueSearch}
-          setDataNews={setDataNews}
-          tab={tab}
-        />
-        <NewsList dataNews={dataNews} loader={loader} tab={tab} />
-      </Container>
-    </InfiniteScroll>
+    <Container>
+      <Navbar />
+      <Tabs setTab={setTab} />
+      <Dropdown
+        angularSearch={angularSearch}
+        reactSearch={reactSearch}
+        vueSearch={vueSearch}
+        setDataNews={setDataNews}
+        tab={tab}
+      />
+      <NewsList
+        dataNews={dataNews}
+        loader={loader}
+        tab={tab}
+        setFaves={setFaves}
+      />
+      <Faves dataNews={dataNews} loader={loader} tab={tab} faves={faves} />
+    </Container>
   );
 };
 

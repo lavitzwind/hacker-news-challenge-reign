@@ -13,10 +13,10 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  margin-top: 4rem;
+  margin-top: 8.25rem;
 `;
 
-const NewsWrapper = styled.div`
+const FavesWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@ const NewsWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const NewsCard = styled.div`
+const FavesCard = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -78,16 +78,14 @@ const LikeCard = styled.div`
   border-radius: 0 6px 6px 0;
   background-color: #eee;
 `;
-
-const NewsList = ({ dataNews, loader, tab, setFaves }) => {
+const Faves = ({ dataNews, loader, tab, faves }) => {
   return (
     <Container
       style={{
-        marginTop: dataNews > 0 ? "4rem" : "-4rem",
-        display: tab === "all" ? "flex" : "none",
+        display: tab === "faves" ? "flex" : "none",
       }}
     >
-      {loader === true && dataNews.length === 0 ? (
+      {loader ? (
         <CircularProgress
           style={{
             color: "#000",
@@ -95,9 +93,9 @@ const NewsList = ({ dataNews, loader, tab, setFaves }) => {
           }}
         />
       ) : (
-        <NewsWrapper>
-          {dataNews.length > 0 ? (
-            dataNews
+        <FavesWrapper>
+          {faves.length > 0 ? (
+            faves
               .filter(
                 (item) =>
                   item.story_title !== null &&
@@ -106,7 +104,7 @@ const NewsList = ({ dataNews, loader, tab, setFaves }) => {
                   item.created_at !== null
               )
               .map((elem, index) => (
-                <NewsCard key={index}>
+                <FavesCard key={index}>
                   <div
                     style={{
                       display: "flex",
@@ -145,7 +143,7 @@ const NewsList = ({ dataNews, loader, tab, setFaves }) => {
                       <Title>{elem.story_title}</Title>
                     </a>
                   </div>
-                  <LikeCard onClick={() => setFaves((prev) => [...prev, elem])}>
+                  <LikeCard>
                     <FavoriteBorderIcon
                       style={{
                         color: "red",
@@ -153,25 +151,25 @@ const NewsList = ({ dataNews, loader, tab, setFaves }) => {
                       }}
                     />
                   </LikeCard>
-                </NewsCard>
+                </FavesCard>
               ))
           ) : (
             <span
               style={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "flex-start",
+                alignItems: "center",
                 height: "30vh",
-                margin: "3rem 2rem 0 0",
+                marginTop: "3rem",
               }}
             >
-              You can start searching for news by selecting your topic.
+              You have not favorite news yet
             </span>
           )}
-        </NewsWrapper>
+        </FavesWrapper>
       )}
     </Container>
   );
 };
 
-export default NewsList;
+export default Faves;
