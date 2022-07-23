@@ -1,19 +1,11 @@
-import styled from "styled-components";
+import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Dropdown from "../Components/Dropdown";
-import Navbar from "../Components/Navbar";
-import NewsList from "../Components/NewsList";
-import Tabs from "../Components/Tabs";
-import Faves from "../Components/Faves";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  background-color: var(--background-color);
-`;
+import Dropdown from "../../Components/dropdown/Dropdown";
+import Navbar from "../../Components/navbar/Navbar";
+import NewsList from "../../Components/newsList/NewsList";
+import Tabs from "../../Components/tabs/Tabs";
+import Faves from "../../Components/faves/Faves";
 
 const Home = () => {
   const [page, setPage] = useState(0);
@@ -69,12 +61,14 @@ const Home = () => {
       e.target.documentElement.scrollHeight
     ) {
       setPage((prev) => prev + 1);
-      if (dataSource.query === "angular") {
-        angularSearch();
-      } else if (dataSource.query === "reactjs") {
-        reactSearch();
-      } else if (dataSource.query === "vue") {
-        vueSearch();
+      if (tab === "all") {
+        if (dataSource.query === "angular") {
+          angularSearch();
+        } else if (dataSource.query === "reactjs") {
+          reactSearch();
+        } else if (dataSource.query === "vue") {
+          vueSearch();
+        }
       }
     }
   };
@@ -91,7 +85,7 @@ const Home = () => {
   }, [faves]);
 
   return (
-    <Container>
+    <div className="">
       <Navbar />
       <Tabs setTab={setTab} />
       <Dropdown
@@ -106,9 +100,10 @@ const Home = () => {
         loader={loader}
         tab={tab}
         setFaves={setFaves}
+        faves={faves}
       />
       <Faves dataNews={dataNews} loader={loader} tab={tab} faves={faves} />
-    </Container>
+    </div>
   );
 };
 

@@ -1,0 +1,47 @@
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 3rem 0 0;
+}
+
+.tabsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.tabsAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: transparent;
+  padding: 0px 10px 0 10px;
+  width: 98px;
+  height: 31px;
+  border-radius: 2px;
+  border: solid 1px var(--tabs-color);
+  color: var(--tabs-color);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.tabsFaves {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: transparent;
+  padding: 0px 10px 0 10px;
+  width: 98px;
+  height: 31px;
+  border-radius: 2px;
+  border: solid 1px var(--default-border-color);
+  color: var(--default-text-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
