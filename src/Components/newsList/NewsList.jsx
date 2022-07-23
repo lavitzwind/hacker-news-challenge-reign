@@ -1,14 +1,14 @@
 import "./newsList.css";
-import { useEffect } from "react";
 import dayjs from "dayjs";
 import CircularProgress from "@mui/material/CircularProgress";
 import relativeTime from "dayjs/plugin/relativeTime";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 dayjs.extend(relativeTime);
 
-const NewsList = ({ dataNews, loader, tab, setFaves }) => {
+const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
   return (
     <div
       className="newsListContainer"
@@ -76,17 +76,37 @@ const NewsList = ({ dataNews, loader, tab, setFaves }) => {
                       <h1 className="titleNewsList">{elem.story_title}</h1>
                     </a>
                   </div>
-                  <div
-                    className="likedNewsListCard"
-                    onClick={() => setFaves((prev) => [...prev, elem])}
-                  >
-                    <FavoriteBorderIcon
-                      style={{
-                        color: "red",
-                        fontSize: "1.7rem",
-                      }}
-                    />
-                  </div>
+                  {faves.find((item) => item.parent_id === elem.parent_id) ? (
+                    <div
+                      className="likedNewsListCard"
+                      onClick={() =>
+                        setFaves(
+                          faves.filter(
+                            (item) => item.parent_id !== elem.parent_id
+                          )
+                        )
+                      }
+                    >
+                      <FavoriteIcon
+                        style={{
+                          color: "red",
+                          fontSize: "1.7rem",
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="likedNewsListCard"
+                      onClick={() => setFaves((prev) => [...prev, elem])}
+                    >
+                      <FavoriteBorderIcon
+                        style={{
+                          color: "red",
+                          fontSize: "1.7rem",
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               ))
           ) : (

@@ -16,6 +16,7 @@ const Home = () => {
   const [faves, setFaves] = useState(
     JSON.parse(localStorage.getItem("faves")) || []
   );
+  const [isFav, setIsFav] = useState(false);
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${page}`;
   const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${page}`;
@@ -112,8 +113,9 @@ const Home = () => {
         loader={loader}
         tab={tab}
         setFaves={setFaves}
+        faves={faves}
       />
-      <Faves loader={loader} tab={tab} faves={faves} />
+      <Faves loader={loader} tab={tab} faves={faves} setFaves={setFaves} />
     </div>
   );
 };

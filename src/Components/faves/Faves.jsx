@@ -3,11 +3,12 @@ import dayjs from "dayjs";
 import CircularProgress from "@mui/material/CircularProgress";
 import relativeTime from "dayjs/plugin/relativeTime";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 dayjs.extend(relativeTime);
 
-const Faves = ({ loader, tab, faves }) => {
+const Faves = ({ loader, tab, faves, setFaves }) => {
   return (
     <div
       className="favesContainer"
@@ -73,14 +74,37 @@ const Faves = ({ loader, tab, faves }) => {
                       <h2 className="titleFaves">{elem.story_title}</h2>
                     </a>
                   </div>
-                  <div className="likedFavesCard">
-                    <FavoriteBorderIcon
-                      style={{
-                        color: "red",
-                        fontSize: "1.7rem",
-                      }}
-                    />
-                  </div>
+                  {faves.find((item) => item.parent_id === elem.parent_id) ? (
+                    <div
+                      className="likedNewsListCard"
+                      onClick={() =>
+                        setFaves(
+                          faves.filter(
+                            (item) => item.parent_id !== elem.parent_id
+                          )
+                        )
+                      }
+                    >
+                      <FavoriteIcon
+                        style={{
+                          color: "red",
+                          fontSize: "1.7rem",
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="likedNewsListCard"
+                      onClick={() => setFaves((prev) => [...prev, elem])}
+                    >
+                      <FavoriteBorderIcon
+                        style={{
+                          color: "red",
+                          fontSize: "1.7rem",
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               ))
           ) : (
@@ -88,9 +112,9 @@ const Faves = ({ loader, tab, faves }) => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "flex-start",
                 height: "30vh",
-                margin: "3rem 0 0 3rem",
+                margin: "2rem 0 0 3rem",
               }}
             >
               You have not favorite news yet
