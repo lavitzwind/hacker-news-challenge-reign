@@ -1,5 +1,5 @@
 import "./dropdown.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import useOnClickOutside from "../../Hooks/useOnClickOutside";
 
@@ -11,7 +11,9 @@ const Dropdown = ({
   tab,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Select your news");
+  const [selected, setSelected] = useState(
+    JSON.parse(localStorage.getItem("topic")) || "Select your news"
+  );
   const dropdownRef = useRef();
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
@@ -24,6 +26,16 @@ const Dropdown = ({
       ? reactSearch() && setDataNews([])
       : vueSearch() && setDataNews([]);
   };
+
+  useEffect(() => {
+    if (selected === "Angular") {
+      handleTopic(selected);
+    } else if (selected === "React") {
+      handleTopic(selected);
+    } else if (selected === "Vue") {
+      handleTopic(selected);
+    }
+  }, []);
 
   const options = [
     {
