@@ -22,8 +22,8 @@
   width: 98px;
   height: 31px;
   border-radius: 2px;
-  border: solid 1px var(--tabs-color);
-  color: var(--tabs-color);
+  border: solid 1px var(#1797ff);
+  color: var(#1797ff);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
@@ -40,7 +40,7 @@
   height: 31px;
   border-radius: 2px;
   border: solid 1px var(--default-border-color);
-  color: var(--default-text-color);
+  color: var(#606060);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.1s ease-in-out;

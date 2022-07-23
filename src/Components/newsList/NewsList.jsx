@@ -88,9 +88,15 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
                       }
                     >
                       <FavoriteIcon
-                        style={{
+                        sx={{
                           color: "red",
                           fontSize: "1.7rem",
+                          transition: "all 0.3s ease-in-out",
+
+                          "&:hover": {
+                            transform: "scale(1.1)",
+                            transition: "all 0.3s ease-in-out",
+                          },
                         }}
                       />
                     </div>
@@ -100,9 +106,15 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
                       onClick={() => setFaves((prev) => [...prev, elem])}
                     >
                       <FavoriteBorderIcon
-                        style={{
+                        sx={{
                           color: "red",
                           fontSize: "1.7rem",
+                          transition: "all 0.3s ease-in-out",
+
+                          "&:hover": {
+                            transform: "scale(1.1)",
+                            transition: "all 0.3s ease-in-out",
+                          },
                         }}
                       />
                     </div>

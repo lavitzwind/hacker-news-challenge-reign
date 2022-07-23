@@ -14,10 +14,8 @@ const Tabs = ({ setTab }) => {
         <li
           className="tabsAll"
           style={{
-            border: tabColor
-              ? "solid 1px var(--tabs-color)"
-              : "solid 1px var(--default-border-color)",
-            color: tabColor ? "var(--tabs-color)" : "var(--default-text-color)",
+            border: tabColor ? "solid 1px #1797ff" : "transparent",
+            color: tabColor ? "#1797ff" : "#606060",
           }}
           onClick={() => setTabColor(true)}
         >
@@ -26,12 +24,8 @@ const Tabs = ({ setTab }) => {
         <div
           className="tabsFaves"
           style={{
-            border: !tabColor
-              ? "solid 1px var(--tabs-color)"
-              : "solid 1px var(--default-border-color)",
-            color: !tabColor
-              ? "var(--tabs-color)"
-              : "var(--default-text-color)",
+            border: !tabColor ? "solid 1px #1797ff" : "transparent",
+            color: !tabColor ? "#1797ff" : "#606060",
           }}
           onClick={() => setTabColor(false)}
         >
