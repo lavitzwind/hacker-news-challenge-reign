@@ -11,7 +11,7 @@ const Dropdown = ({
   tab,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected] = useState(
+  const [selected, setSelected] = useState(
     JSON.parse(localStorage.getItem("topic")) || "Select your news"
   );
   const dropdownRef = useRef();
@@ -19,6 +19,7 @@ const Dropdown = ({
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleTopic = (topic) => {
+    setSelected(topic);
     topic === "Angular"
       ? angularSearch() && setDataNews([])
       : topic === "React"
@@ -31,7 +32,7 @@ const Dropdown = ({
       handleTopic(selected);
     } else if (selected === "React") {
       handleTopic(selected);
-    } else if (selected === "Vue") {
+    } else if (selected === "Vuejs") {
       handleTopic(selected);
     }
   }, []);

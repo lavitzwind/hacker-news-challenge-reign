@@ -89,7 +89,7 @@ const Home = () => {
     } else if (dataSource.query === "reactjs") {
       localStorage.setItem("topic", JSON.stringify("React"));
     } else if (dataSource.query === "vue") {
-      localStorage.setItem("topic", JSON.stringify("Vue"));
+      localStorage.setItem("topic", JSON.stringify("Vuejs"));
     }
   }, [dataSource.query]);
 
