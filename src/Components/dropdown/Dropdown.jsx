@@ -35,6 +35,7 @@ const Dropdown = ({
     } else if (selected === "Vuejs") {
       handleTopic(selected);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = [
