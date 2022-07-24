@@ -64,8 +64,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 67px;
-  height: 86.4px;
+  width: 70px;
+  height: 86.1px;
   border-radius: 0 6px 6px 0;
   background-color: #eee;
+}
+
+@media screen and (max-width: 1300px) {
+  .favesWrapper {
+    max-width: 1100px;
+  }
+  .favesCard {
+    width: 480px;
+  }
+
+  .titleFaves {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .favesContainer {
+    margin-top: 3rem;
+  }
+
+  .favesCard {
+    width: 400px;
+    height: 120px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .likedFavesCard {
+    width: 70px;
+    height: 116px;
+  }
+
+  .titleFaves {
+    font-size: 0.8rem;
+    margin-top: 3px;
+    width: 50%;
+    margin-left: 5rem;
+  }
+
+  .timeStamps {
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .favesCard {
+    width: 330px;
+    height: 120px;
+    justify-content: center;
+    align-items: center;
+  }
 }

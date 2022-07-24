@@ -21,3 +21,16 @@
   font-family: "Baskerville", Times, serif;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1300px) {
+  .navbarWrapper {
+    max-width: 1100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbarWrapper {
+    justify-content: center;
+    margin-left: 30px;
+  }
+}

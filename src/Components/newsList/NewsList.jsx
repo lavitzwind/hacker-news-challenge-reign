@@ -31,7 +31,7 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
               .filter(
                 (item) =>
                   item.story_title !== null &&
-                  item.story_author !== null &&
+                  item.author !== null &&
                   item.story_url !== null &&
                   item.created_at !== null
               )
@@ -44,7 +44,7 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
                       flexDirection: "column",
                       justifyContent: "flex-start",
                       alignItems: "flex-start",
-                      width: "475px",
+                      width: "100%",
                       height: "90px",
                       padding: "20px 0 20px 25px",
                     }}

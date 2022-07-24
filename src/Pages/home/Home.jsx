@@ -16,7 +16,6 @@ const Home = () => {
   const [faves, setFaves] = useState(
     JSON.parse(localStorage.getItem("faves")) || []
   );
-  const [isFav, setIsFav] = useState(false);
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${page}`;
   const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${page}`;
@@ -60,7 +59,7 @@ const Home = () => {
 
   const scrollData = (e) => {
     if (
-      window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+      window.innerHeight + e.target.documentElement.scrollTop + 10 >=
       e.target.documentElement.scrollHeight
     ) {
       setPage((prev) => prev + 1);

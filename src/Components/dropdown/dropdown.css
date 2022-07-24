@@ -88,3 +88,15 @@
   height: 100%;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1300px) {
+  .dropdownContainer {
+    max-width: 1055px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dropdownContainer {
+    justify-content: center;
+  }
+}
