@@ -76,7 +76,9 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
                       <h1 className="titleNewsList">{elem.story_title}</h1>
                     </a>
                   </div>
-                  {faves.find((item) => item.parent_id === elem.parent_id) ? (
+                  {faves.find(
+                    (item) => item.created_at_i === elem.created_at_i
+                  ) ? (
                     <div
                       className="likedNewsListCard"
                       onClick={() =>
