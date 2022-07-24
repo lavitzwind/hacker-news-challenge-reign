@@ -19,7 +19,6 @@ const Dropdown = ({
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleTopic = (topic) => {
-    console.log(topic);
     setSelected(topic);
     topic === "angular"
       ? angularSearch() && setDataNews([])

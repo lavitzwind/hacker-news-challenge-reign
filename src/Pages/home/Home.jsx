@@ -106,6 +106,7 @@ const Home = () => {
         vueSearch={vueSearch}
         setDataNews={setDataNews}
         tab={tab}
+        page={page}
       />
       <NewsList
         dataNews={dataNews}
