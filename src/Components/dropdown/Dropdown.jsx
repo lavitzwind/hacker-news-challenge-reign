@@ -19,43 +19,44 @@ const Dropdown = ({
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleTopic = (topic) => {
+    console.log(topic);
     setSelected(topic);
-    topic === "Angular"
+    topic === "angular"
       ? angularSearch() && setDataNews([])
-      : topic === "React"
+      : topic === "reactjs"
       ? reactSearch() && setDataNews([])
       : vueSearch() && setDataNews([]);
   };
 
   useEffect(() => {
-    if (selected === "Angular") {
+    if (selected === "angular") {
       handleTopic(selected);
-    } else if (selected === "React") {
+    } else if (selected === "reactjs") {
       handleTopic(selected);
-    } else if (selected === "Vuejs") {
+    } else if (selected === "vuejs") {
       handleTopic(selected);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selected]);
 
   const options = [
     {
       id: 1,
-      name: "Angular",
+      name: "angular",
       value: 1,
       icon: "assets/icons/angularIcon.png",
       alt: "Angular Icon",
     },
     {
       id: 2,
-      name: "React",
+      name: "reactjs",
       value: 2,
       icon: "assets/icons/reactIcon.png",
       alt: "React Icon",
     },
     {
       id: 3,
-      name: "Vuejs",
+      name: "vuejs",
       value: 3,
       icon: "assets/icons/vueIcon.png",
       alt: "Vue.js Icon",
@@ -72,7 +73,8 @@ const Dropdown = ({
       <div className="dropdownContainer" ref={dropdownRef}>
         <div className="selectWrapper" onClick={() => setIsOpen(!isOpen)}>
           <span className="defaultText">
-            {selected} <ArrowDropDownIcon />
+            {selected.slice(0, 1).toUpperCase() + selected.slice(1)}{" "}
+            <ArrowDropDownIcon />
           </span>
         </div>
         {isOpen && (
@@ -85,7 +87,7 @@ const Dropdown = ({
               >
                 <img className="iconsDropdown" src={item.icon} alt={item.alt} />
                 <span className="topics" onClick={() => handleTopic(item.name)}>
-                  {item.name}
+                  {item.name.slice(0, 1).toUpperCase() + item.name.slice(1)}
                 </span>
               </div>
             ))}

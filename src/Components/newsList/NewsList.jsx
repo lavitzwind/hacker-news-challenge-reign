@@ -29,7 +29,7 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
           {dataNews.length > 0 ? (
             dataNews
               .filter(
-                (item) =>
+                (item, index, self) =>
                   item.story_title !== null &&
                   item.author !== null &&
                   item.story_url !== null &&

@@ -84,11 +84,11 @@ const Home = () => {
 
   useEffect(() => {
     if (dataSource.query === "angular") {
-      localStorage.setItem("topic", JSON.stringify("Angular"));
+      localStorage.setItem("topic", JSON.stringify("angular"));
     } else if (dataSource.query === "reactjs") {
-      localStorage.setItem("topic", JSON.stringify("React"));
+      localStorage.setItem("topic", JSON.stringify("reactjs"));
     } else if (dataSource.query === "vue") {
-      localStorage.setItem("topic", JSON.stringify("Vuejs"));
+      localStorage.setItem("topic", JSON.stringify("vuejs"));
     }
   }, [dataSource.query]);
 
