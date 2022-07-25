@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Hacker News - Reign Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hacker News - Frontend Developer Challenge :sunglasses:
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2cbcf313-73bc-436b-a1cd-3c9e8556fdd7/deploy-status)](https://app.netlify.com/sites/reign-challenge-hacker-news/deploys)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+<img src="https://i.ibb.co/gw5MPpS/Screenshot-4.jpg" alt="screenshotApp" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This web app allows you to search for the latest news about the tech world; you can filter them by the framework names and save them by liking them. This app retrieve the data from HN Search API.
 
-### `npm test`
+Frontend Developer Challenge for [Reign](https://www.reign.cl/en/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Demo
 
-### `npm run build`
+[Demo Link - Netlify](https://reign-challenge-hacker-news.netlify.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
+- HTML/CSS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Functionality
 
-### `npm run eject`
+- The selected filter should persist on the local storage
+- The favorited posts should persist on the local storage
+- The web app is expected to work as a responsive web application
+- When clicking on the row, a new tab should be open with the link of the post
+  (story_url)
+- Clicking on the “like button” should not trigger the opening of the post URL link
+- When hovering on the row, apply opacity to the entire row and its children (texts,
+  icons, like button, etc)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Setup && Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Node.js](https://nodejs.org/) v12+ to run.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+# Clone repository
+git clone git@github.com:lavitzwind/hacker-news-challenge-reign.git
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+# Install dependencies
+npm i
+```
 
-## Learn More
+```sh
+# Start development server
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Open [http://localhost:3000](http://localhost:3000)

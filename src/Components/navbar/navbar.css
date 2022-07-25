@@ -31,6 +31,6 @@
 @media screen and (max-width: 768px) {
   .navbarWrapper {
     justify-content: center;
-    margin-left: 30px;
+    margin-left: 0px;
   }
 }

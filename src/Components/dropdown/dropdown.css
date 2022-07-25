@@ -99,6 +99,10 @@
 
 @media screen and (max-width: 768px) {
   .dropdownContainer {
+    margin: 0 0 0 0;
+  }
+
+  .dropdownContainer {
     justify-content: center;
   }
 }
