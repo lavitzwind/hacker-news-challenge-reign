@@ -99,10 +99,13 @@
 
 @media screen and (max-width: 768px) {
   .dropdownContainer {
+    justify-content: center;
     margin: 0 0 0 0;
   }
 
-  .dropdownContainer {
+  .optionList {
     justify-content: center;
+    align-items: center;
+    left: calc(50% - 120px);
   }
 }

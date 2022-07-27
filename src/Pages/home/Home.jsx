@@ -97,7 +97,7 @@ const Home = () => {
       setPageVue((prev) => prev + 1);
       localStorage.setItem("topic", JSON.stringify("vuejs"));
     }
-  }, [dataSource.query]);
+  }, [dataSource?.query]);
 
   useEffect(() => {
     localStorage.setItem("faves", JSON.stringify(faves));
@@ -113,6 +113,9 @@ const Home = () => {
         vueSearch={vueSearch}
         setDataNews={setDataNews}
         tab={tab}
+        setPageReact={setPageReact}
+        setPageAngular={setPageAngular}
+        setPageVue={setPageVue}
       />
       <NewsList
         dataNews={dataNews}

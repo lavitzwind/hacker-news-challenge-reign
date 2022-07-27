@@ -9,45 +9,32 @@ const Dropdown = ({
   vueSearch,
   setDataNews,
   tab,
+  setPageAngular,
+  setPageReact,
+  setPageVue,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(
     JSON.parse(localStorage.getItem("topic")) || "Select your news"
   );
   const dropdownRef = useRef();
-  const effectRan = useRef(false);
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
-  const handleTopic = (topic) => {
+  useEffect(() => {
+    setPageAngular(0);
+    setPageReact(0);
+    setPageVue(0);
     setDataNews([]);
-    setSelected(topic);
-    if (topic === "angular") {
+    if (selected === "angular") {
       angularSearch();
-    } else if (topic === "reactjs") {
+    } else if (selected === "reactjs") {
       reactSearch();
-    } else if (topic === "vuejs") {
+    } else if (selected === "vuejs") {
       vueSearch();
     }
-  };
-
-  useEffect(() => {
-    if (effectRan.current === false) {
-      setDataNews([]);
-      if (selected === "angular") {
-        handleTopic(selected);
-      } else if (selected === "reactjs") {
-        handleTopic(selected);
-      } else if (selected === "vuejs") {
-        handleTopic(selected);
-      }
-
-      return () => {
-        effectRan.current = true;
-      };
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selected, setSelected]);
 
   const options = [
     {
@@ -83,7 +70,7 @@ const Dropdown = ({
       <div className="dropdownContainer" ref={dropdownRef}>
         <div className="selectWrapper" onClick={() => setIsOpen(!isOpen)}>
           <span className="defaultText">
-            {selected.slice(0, 1).toUpperCase() + selected.slice(1)}{" "}
+            {selected.slice(0, 1).toUpperCase() + selected.slice(1)}
             <ArrowDropDownIcon />
           </span>
         </div>
@@ -96,7 +83,10 @@ const Dropdown = ({
                 onClick={() => setIsOpen(false)}
               >
                 <img className="iconsDropdown" src={item.icon} alt={item.alt} />
-                <span className="topics" onClick={() => handleTopic(item.name)}>
+                <span
+                  className="topics"
+                  onClick={() => setSelected(item?.name)}
+                >
                   {item.name.slice(0, 1).toUpperCase() + item.name.slice(1)}
                 </span>
               </div>
