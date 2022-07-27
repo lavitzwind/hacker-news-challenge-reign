@@ -15,6 +15,7 @@ const Dropdown = ({
     JSON.parse(localStorage.getItem("topic")) || "Select your news"
   );
   const dropdownRef = useRef();
+  const effectRan = useRef(false);
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
@@ -31,15 +32,20 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    setDataNews([]);
-    if (selected === "angular") {
-      handleTopic(selected);
-    } else if (selected === "reactjs") {
-      handleTopic(selected);
-    } else if (selected === "vuejs") {
-      handleTopic(selected);
-    }
+    if (effectRan.current === false) {
+      setDataNews([]);
+      if (selected === "angular") {
+        handleTopic(selected);
+      } else if (selected === "reactjs") {
+        handleTopic(selected);
+      } else if (selected === "vuejs") {
+        handleTopic(selected);
+      }
 
+      return () => {
+        effectRan.current = true;
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
