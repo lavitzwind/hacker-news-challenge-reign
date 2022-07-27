@@ -8,7 +8,9 @@ import Tabs from "../../Components/tabs/Tabs";
 import Faves from "../../Components/faves/Faves";
 
 const Home = () => {
-  const [page, setPage] = useState(0);
+  const [pageReact, setPageReact] = useState(0);
+  const [pageAngular, setPageAngular] = useState(0);
+  const [pageVue, setPageVue] = useState(0);
   const [dataNews, setDataNews] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -17,58 +19,60 @@ const Home = () => {
     JSON.parse(localStorage.getItem("faves")) || []
   );
 
-  const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${page}`;
-  const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${page}`;
-  const vueUrl = `https://hn.algolia.com/api/v1/search_by_date?query=vue&page=${page}`;
+  const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${pageAngular}`;
+  const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${pageReact}`;
+  const vueUrl = `https://hn.algolia.com/api/v1/search_by_date?query=vue&page=${pageVue}`;
 
   const angularSearch = async () => {
+    setLoader(true);
     try {
-      setLoader(true);
       const res = await axios.get(`${angularUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
-      setLoader(false);
     } catch (err) {
       console.log(err);
     }
+    setLoader(false);
   };
 
   const reactSearch = async () => {
+    setLoader(true);
     try {
-      setLoader(true);
       const res = await axios.get(`${reactUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
-      setLoader(false);
     } catch (err) {
       console.log(err);
     }
+    setLoader(false);
   };
 
   const vueSearch = async () => {
+    setLoader(true);
     try {
-      setLoader(true);
       const res = await axios.get(`${vueUrl}`);
       setDataSource(res.data);
       setDataNews((prev) => [...prev, ...res.data.hits]);
-      setLoader(false);
     } catch (err) {
       console.log(err);
     }
+    setLoader(false);
   };
 
   const scrollData = (e) => {
     if (
-      window.innerHeight + e.target.documentElement.scrollTop + 10 >=
+      window.innerHeight + e.target.documentElement.scrollTop + 50 >=
       e.target.documentElement.scrollHeight
     ) {
-      setPage((prev) => prev + 1);
       if (tab === "all") {
         if (dataSource.query === "angular") {
+          setPageAngular((prev) => prev + 1);
           angularSearch();
         } else if (dataSource.query === "reactjs") {
+          setPageReact((prev) => prev + 1);
           reactSearch();
         } else if (dataSource.query === "vue") {
+          setPageVue((prev) => prev + 1);
           vueSearch();
         }
       }
@@ -84,10 +88,13 @@ const Home = () => {
 
   useEffect(() => {
     if (dataSource.query === "angular") {
+      setPageAngular((prev) => prev + 1);
       localStorage.setItem("topic", JSON.stringify("angular"));
     } else if (dataSource.query === "reactjs") {
+      setPageReact((prev) => prev + 1);
       localStorage.setItem("topic", JSON.stringify("reactjs"));
     } else if (dataSource.query === "vue") {
+      setPageVue((prev) => prev + 1);
       localStorage.setItem("topic", JSON.stringify("vuejs"));
     }
   }, [dataSource.query]);
@@ -106,7 +113,6 @@ const Home = () => {
         vueSearch={vueSearch}
         setDataNews={setDataNews}
         tab={tab}
-        page={page}
       />
       <NewsList
         dataNews={dataNews}

@@ -19,15 +19,19 @@ const Dropdown = ({
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleTopic = (topic) => {
+    setDataNews([]);
     setSelected(topic);
-    topic === "angular"
-      ? angularSearch() && setDataNews([])
-      : topic === "reactjs"
-      ? reactSearch() && setDataNews([])
-      : vueSearch() && setDataNews([]);
+    if (topic === "angular") {
+      angularSearch();
+    } else if (topic === "reactjs") {
+      reactSearch();
+    } else if (topic === "vuejs") {
+      vueSearch();
+    }
   };
 
   useEffect(() => {
+    setDataNews([]);
     if (selected === "angular") {
       handleTopic(selected);
     } else if (selected === "reactjs") {
@@ -35,8 +39,7 @@ const Dropdown = ({
     } else if (selected === "vuejs") {
       handleTopic(selected);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
+  }, []);
 
   const options = [
     {
