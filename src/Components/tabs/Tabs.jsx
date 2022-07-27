@@ -26,6 +26,7 @@ const Tabs = ({ setTab }) => {
           style={{
             border: !tabColor ? "solid 1px #1797ff" : "transparent",
             color: !tabColor ? "#1797ff" : "#606060",
+            marginRight: !tabColor ? "2rem" : "0",
           }}
           onClick={() => setTabColor(false)}
         >

@@ -130,7 +130,8 @@ const NewsList = ({ dataNews, loader, tab, setFaves, faves }) => {
                 justifyContent: "center",
                 alignItems: "flex-start",
                 height: "30vh",
-                margin: "3rem 2rem 0 0",
+                margin: "3rem 2rem 0 2rem",
+                textAlign: "center",
               }}
             >
               You can start searching for news by selecting your topic.

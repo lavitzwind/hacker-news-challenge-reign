@@ -114,7 +114,8 @@ const Faves = ({ loader, tab, faves, setFaves }) => {
                 justifyContent: "center",
                 alignItems: "flex-start",
                 height: "30vh",
-                margin: "2rem 0 0 3rem",
+                margin: "2rem 3rem 0 3rem",
+                textAlign: "center",
               }}
             >
               You have not favorite news yet
