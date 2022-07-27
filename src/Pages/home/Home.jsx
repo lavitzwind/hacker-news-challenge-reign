@@ -1,5 +1,5 @@
 import "./home.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropdown from "../../Components/dropdown/Dropdown";
 import Navbar from "../../Components/navbar/Navbar";
@@ -18,7 +18,6 @@ const Home = () => {
   const [faves, setFaves] = useState(
     JSON.parse(localStorage.getItem("faves")) || []
   );
-  const effectRan = useRef(false);
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${pageAngular}`;
   const reactUrl = `https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=${pageReact}`;
