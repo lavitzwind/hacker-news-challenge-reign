@@ -1,7 +1,11 @@
 import "./tabs.css";
 import { useState, useEffect } from "react";
 
-const Tabs = ({ setTab }) => {
+interface TabsProps {
+  setTab: (tab: string) => void;
+}
+
+const Tabs = ({ setTab }: TabsProps) => {
   const [tabColor, setTabColor] = useState(true);
 
   useEffect(() => {

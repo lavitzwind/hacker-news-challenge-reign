@@ -2,6 +2,7 @@ import "./dropdown.css";
 import { useState, useRef, useEffect } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import useOnClickOutside from "../../Hooks/useOnClickOutside";
+import { DropdownProps } from "../../types/dropdownProps";
 
 const Dropdown = ({
   angularSearch,
@@ -12,12 +13,12 @@ const Dropdown = ({
   setPageAngular,
   setPageReact,
   setPageVue,
-}) => {
+}: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(
-    JSON.parse(localStorage.getItem("topic")) || "Select your news"
+    JSON.parse(localStorage.getItem("topic") || "Select your news")
   );
-  const dropdownRef = useRef();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 

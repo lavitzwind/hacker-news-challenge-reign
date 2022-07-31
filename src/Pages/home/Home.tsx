@@ -6,17 +6,18 @@ import Navbar from "../../Components/navbar/Navbar";
 import NewsList from "../../Components/newsList/NewsList";
 import Tabs from "../../Components/tabs/Tabs";
 import Faves from "../../Components/faves/Faves";
+import { News } from "../../types/news";
 
 const Home = () => {
-  const [pageReact, setPageReact] = useState(0);
-  const [pageAngular, setPageAngular] = useState(0);
-  const [pageVue, setPageVue] = useState(0);
-  const [dataNews, setDataNews] = useState([]);
-  const [dataSource, setDataSource] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const [tab, setTab] = useState("all");
+  const [pageReact, setPageReact] = useState<number>(0);
+  const [pageAngular, setPageAngular] = useState<number>(0);
+  const [pageVue, setPageVue] = useState<number>(0);
+  const [dataNews, setDataNews] = useState<News[]>([]);
+  const [dataSource, setDataSource] = useState([] as any);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [tab, setTab] = useState<string>("all");
   const [faves, setFaves] = useState(
-    JSON.parse(localStorage.getItem("faves")) || []
+    JSON.parse(localStorage.getItem("faves") || "")
   );
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${pageAngular}`;
@@ -28,7 +29,9 @@ const Home = () => {
     try {
       const res = await axios.get(`${angularUrl}`);
       setDataSource(res.data);
-      setDataNews((prev) => [...prev, ...res.data.hits]);
+      setDataNews((prev) =>
+        prev ? [...prev, ...res.data.hits] : res.data.hits
+      );
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +43,9 @@ const Home = () => {
     try {
       const res = await axios.get(`${reactUrl}`);
       setDataSource(res.data);
-      setDataNews((prev) => [...prev, ...res.data.hits]);
+      setDataNews((prev) =>
+        prev ? [...prev, ...res.data.hits] : res.data.hits
+      );
     } catch (err) {
       console.log(err);
     }
@@ -52,20 +57,23 @@ const Home = () => {
     try {
       const res = await axios.get(`${vueUrl}`);
       setDataSource(res.data);
-      setDataNews((prev) => [...prev, ...res.data.hits]);
+      setDataNews((prev) =>
+        prev ? [...prev, ...res.data.hits] : res.data.hits
+      );
     } catch (err) {
       console.log(err);
     }
     setLoader(false);
   };
 
-  const scrollData = (e) => {
+  const onScroll = (e: any) => {
+    console.log(e.target.documentElement.scrollTop);
     if (
-      window.innerHeight + e.target.documentElement.scrollTop >=
-      e.target.documentElement.scrollHeight
+      window.innerHeight + (e.target.documentElement as any).scrollTop >=
+      (e.target.documentElement as any).scrollHeight
     ) {
       if (tab === "all") {
-        if (dataSource.query === "angular") {
+        if (dataSource.query) {
           setPageAngular((prev) => prev + 1);
           angularSearch();
         } else if (dataSource.query === "reactjs") {
@@ -80,9 +88,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollData);
+    window.addEventListener("scroll", onScroll as EventListener);
     return () => {
-      window.removeEventListener("scroll", scrollData);
+      window.removeEventListener("scroll", onScroll as EventListener);
     };
   });
 
@@ -104,7 +112,7 @@ const Home = () => {
   }, [faves]);
 
   return (
-    <div className="">
+    <div>
       <Navbar />
       <Tabs setTab={setTab} />
       <Dropdown
