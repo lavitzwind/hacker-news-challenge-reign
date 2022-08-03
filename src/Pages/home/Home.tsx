@@ -16,8 +16,8 @@ const Home = () => {
   const [dataSource, setDataSource] = useState([] as any);
   const [loader, setLoader] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("all");
-  const [faves, setFaves] = useState(
-    JSON.parse(localStorage.getItem("faves") || "")
+  const [faves, setFaves] = useState<News[]>(
+    JSON.parse(localStorage.getItem("faves") || "[]")
   );
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${pageAngular}`;

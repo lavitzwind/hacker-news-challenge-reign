@@ -15,8 +15,8 @@ const Dropdown = ({
   setPageVue,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(
-    JSON.parse(localStorage.getItem("topic") || "Select your news")
+  const [selected, setSelected] = useState<string>(
+    JSON.parse(localStorage.getItem("topic") as string) || "Select your news"
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
 
