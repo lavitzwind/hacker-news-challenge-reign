@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 //Hook
 
-const useOnClickOutside = (ref: any, handler: Function) => {
+const useOnClickOutside = (
+  ref: {
+    current: any;
+  },
+  handler: Function
+) => {
   useEffect(
     () => {
       const listener = (event: Event) => {

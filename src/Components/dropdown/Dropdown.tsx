@@ -2,7 +2,7 @@ import "./dropdown.css";
 import { useState, useRef, useEffect } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import useOnClickOutside from "../../Hooks/useOnClickOutside";
-import { DropdownProps } from "../../types/dropdownProps";
+import { DropdownProps } from "../../interfaces/dropdownProps";
 
 const Dropdown = ({
   angularSearch,

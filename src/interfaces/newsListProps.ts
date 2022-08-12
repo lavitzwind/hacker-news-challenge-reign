@@ -1,9 +1,9 @@
 import { News } from "./news";
 
-interface NewsListProps {
+export interface NewsListProps {
   dataNews: News[];
   tab: string;
   faves: News[];
   loader: boolean;
-  setFaves: (faves: Array) => void;
+  setFaves: (faves: any) => void;
 }

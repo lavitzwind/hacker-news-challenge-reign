@@ -6,7 +6,7 @@ import Navbar from "../../Components/navbar/Navbar";
 import NewsList from "../../Components/newsList/NewsList";
 import Tabs from "../../Components/tabs/Tabs";
 import Faves from "../../Components/faves/Faves";
-import { News } from "../../types/news";
+import { News } from "../../interfaces/news";
 
 const Home = () => {
   const [pageReact, setPageReact] = useState<number>(0);
@@ -17,7 +17,7 @@ const Home = () => {
   const [loader, setLoader] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("all");
   const [faves, setFaves] = useState<News[]>(
-    JSON.parse(localStorage.getItem("faves") || "[]")
+    JSON.parse((localStorage.getItem("faves") as any) || "[]")
   );
 
   const angularUrl = `https://hn.algolia.com/api/v1/search_by_date?query=angular&page=${pageAngular}`;
@@ -67,7 +67,6 @@ const Home = () => {
   };
 
   const onScroll = (e: any) => {
-    console.log(e.target.documentElement.scrollTop);
     if (
       window.innerHeight + (e.target.documentElement as any).scrollTop >=
       (e.target.documentElement as any).scrollHeight
