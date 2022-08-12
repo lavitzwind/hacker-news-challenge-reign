@@ -6,7 +6,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { FavesProps } from "../../interfaces/favesProps";
-import { News } from "../../interfaces/news";
 
 dayjs.extend(relativeTime);
 
